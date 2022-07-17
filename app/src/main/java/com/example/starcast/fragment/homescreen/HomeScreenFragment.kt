@@ -90,15 +90,33 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
         }
     }
 
+    private fun isValidate(searchText: String):Boolean
+    {
+        if(searchText.isEmpty())
+        {
+            return false
+        }
+        return true
+    }
+
 
 
     override fun onClick(view: View?) {
-        btnSearch.clickable(false)
-        val data: HashMap<String, String> = HashMap()
-        data.apply {
-            this[getString(R.string.text_search)] = etSearchPeople.text.toString()
+        val searchText=etSearchPeople.text.toString()
+        if(isValidate(searchText))
+        {
+            btnSearch.clickable(false)
+            val data: HashMap<String, String> = HashMap()
+            data.apply {
+                this[getString(R.string.text_search)] = searchText
+            }
+            characterListViewModel.getDashboardCountList(data)
         }
-        characterListViewModel.getDashboardCountList(data)
+        else
+        {
+            Toast.makeText(requireContext(),getString(R.string.text_enter_people_name),Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     override fun onRecyclerItemClicked(view: View?, position: Int, extra: Any?) {
