@@ -7,9 +7,10 @@
 ###### MEETS SPECIFICATIONS
 
 ```
- 1. Koin
- 2. Retrofit
- 3. Navigation Component
- 4. Coroutines
+ 
+ 1. Retrofit
+ 2. Navigation Component
+ 3. Coroutines
+ 4. Koin
  
 ```
