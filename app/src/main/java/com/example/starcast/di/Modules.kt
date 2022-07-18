@@ -9,8 +9,7 @@ import org.koin.dsl.module
 
 object Modules {
 
-    private val applicationModules = module {
-    }
+
     private val viewModelModules = module {
         viewModel { CharacterSearchViewModel(get(), get()) }
     }
@@ -23,7 +22,7 @@ object Modules {
         single<APIRepository> { APIRepositoryImpl(get()) }
     }
 
-    fun getAll() = listOf(applicationModules, viewModelModules, networkModules, repoModules)
+    fun getAll() = listOf(viewModelModules, networkModules, repoModules)
 
 
 }

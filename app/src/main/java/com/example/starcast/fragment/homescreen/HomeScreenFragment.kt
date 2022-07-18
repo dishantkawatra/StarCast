@@ -35,6 +35,7 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
         super.onAttach(context)
         characterListViewModel.characterSearchApi().observe(this, EventObserver {
             btnSearch.clickable(true)
+            progressBar.visibility=View.GONE
             when (it) {
                 is ResultState.Success<*> -> {
                     it.data?.let {data->
@@ -110,6 +111,7 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
             data.apply {
                 this[getString(R.string.text_search)] = searchText
             }
+            progressBar.visibility=View.VISIBLE
             characterListViewModel.getDashboardCountList(data)
         }
         else
