@@ -2,7 +2,7 @@
 
 **This application is demo of start cast in which you can search people on home page and get details after you tap on it.**
 
-## Framework's
+
 
 ###### MEETS SPECIFICATIONS
 
