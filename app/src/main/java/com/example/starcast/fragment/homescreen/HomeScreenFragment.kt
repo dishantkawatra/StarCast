@@ -138,7 +138,7 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
     override fun onRecyclerItemClicked(view: View?, position: Int, extra: Any?) {
         Bundle().apply {
             this.putParcelable(ARG_PARAM1,characterList[position])
-            view?.let { Navigation.findNavController(it).navigate(R.id.action_FirstFragment_to_SecondFragment,this) }
+            view?.let { Navigation.findNavController(it).navigate(R.id.action_HomeFragment_to_CharacterDetailFragment,this) }
         }
 
     }
