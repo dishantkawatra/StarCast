@@ -21,7 +21,7 @@ suspend inline fun <T> Deferred<Response<T>>.awaitAndGet(): NetworkResult<T> {
                 {
                     NetworkResult.Success(response.body(), response.code()) as NetworkResult<T>
                 }
-                else if (result.opening_crawl.isNotEmpty())
+                else if (!result.opening_crawl.isNullOrEmpty())
                 {
                     NetworkResult.Success(response.body(), response.code()) as NetworkResult<T>
                 }
