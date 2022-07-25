@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/star_wars_landing_image"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:alpha="0.7"
+    android:layout_height="match_parent">
 
 
     <androidx.cardview.widget.CardView
@@ -22,7 +23,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/black"
+            android:background="@color/white"
             android:padding="8dp">
 
             <TextView
@@ -36,17 +37,17 @@
 
             <TextView
                 android:id="@+id/tvName"
-
                 style="@style/MyTextViewStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/textView"
-                app:layout_constraintTop_toTopOf="@+id/textView"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="Dishant" />
 
             <TextView
                 android:id="@+id/textView3"
                 style="@style/MyTextViewStyle"
+
                 android:text="@string/text_birth_year"
                 app:layout_constraintStart_toStartOf="@+id/textView"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -79,26 +80,50 @@
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
-            <TextView
-                android:id="@+id/tvFilms"
-                style="@style/MyTextViewStyle"
-                app:layout_constraintStart_toStartOf="@+id/tvHeight"
-                app:layout_constraintTop_toBottomOf="@+id/tvHeight"
-                tools:text="films" />
 
             <TextView
-                android:id="@+id/textView10"
+                android:id="@+id/tvOpening"
                 style="@style/MyTextViewStyle"
                 android:text="@string/text_opening_crawl"
-                app:layout_constraintStart_toStartOf="@+id/textView7"
-                app:layout_constraintTop_toBottomOf="@+id/textView7" />
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+
 
             <TextView
                 android:id="@+id/tvOpeningCrawl"
                 style="@style/MyTextViewStyle"
-                app:layout_constraintStart_toStartOf="@+id/tvFilms"
-                app:layout_constraintTop_toBottomOf="@+id/tvFilms"
-                tools:text="OpeningCrawl" />
+                android:layout_marginEnd="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxHeight="100dp"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvHeight"
+                app:layout_constraintTop_toBottomOf="@+id/spinner"
+                tools:text="" />
+
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/Weight"
+                android:layout_marginTop="8dp"
+                android:gravity="start"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.58"
+                app:layout_constraintStart_toEndOf="@+id/textView7"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <ProgressBar
+                android:id="@+id/pbOpeningCrawl"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvOpeningCrawl"
+                app:layout_constraintEnd_toEndOf="@+id/spinner"
+                app:layout_constraintStart_toStartOf="@+id/tvHeight"
+                app:layout_constraintTop_toTopOf="@+id/tvOpeningCrawl" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

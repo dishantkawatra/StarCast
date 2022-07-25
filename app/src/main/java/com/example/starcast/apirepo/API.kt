@@ -9,6 +9,9 @@ interface API {
     @GET("/api/people/")
     fun searchPeople(@QueryMap params: HashMap<String, String>): Deferred<Response<ServerResponse<List<CharacterDetailResponse>>>>
 
+    @GET()
+    fun searchFilmData(@Url params: String=""): Deferred<Response<ServerResponse<CharacterDetailResponse>>>
+
 
 }
 

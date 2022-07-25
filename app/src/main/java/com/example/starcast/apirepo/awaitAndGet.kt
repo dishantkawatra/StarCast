@@ -27,10 +27,15 @@ suspend inline fun <T> Deferred<Response<T>>.awaitAndGet(): NetworkResult<T> {
                 {
                     NetworkResult.Success(response.body(), response.code()) as NetworkResult<T>
                 }
-              else  if (result.count==0)
+                else if (result.opening_crawl.isNotEmpty())
+                {
+                    NetworkResult.Success(response.body(), response.code()) as NetworkResult<T>
+                }
+               else if (result.count==0)
                 {
                     NetworkResult.Failure("No Data Found", response.code())
                 }
+
                 else{
                     NetworkResult.Failure("", response.code())
                 }
@@ -92,13 +97,10 @@ suspend inline fun <T> Deferred<Response<T>>.awaitAndGet(): NetworkResult<T> {
             )
         }
     } catch (e: UnknownHostException) {
-        Log.e("message","catch")
         NetworkResult.Failure("Failed to connect to server", 101)
     } catch (e: SocketTimeoutException) {
-        Log.e("message","catch")
         NetworkResult.Failure("Timeout", HttpURLConnection.HTTP_INTERNAL_ERROR)
     } catch (e: Exception) {
-        Log.e("message","catch")
         NetworkResult.Failure(e.message.toString(), HttpURLConnection.HTTP_INTERNAL_ERROR)
     }
 }

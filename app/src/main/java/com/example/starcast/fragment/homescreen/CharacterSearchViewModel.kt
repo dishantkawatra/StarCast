@@ -28,11 +28,36 @@ class CharacterSearchViewModel(app: Application, apiRepo: APIRepository) : BaseV
 
     }
 
+
+    fun getFilmDataApi(filmUrl: String) {
+        launch {
+            val result = apiRepo.searchFilmData(filmUrl).awaitAndGet()
+            getCharacterFilmDetail.postValue(Event(when (result) {
+                is NetworkResult.Failure -> {
+                    ResultState.Failure(result.errorMessage, result.code)
+                }
+                is NetworkResult.Success -> result.body.run {
+                    ResultState.Success(result.body,result.body.opening_crawl)
+                }
+            }))
+        }
+
+    }
+
     private lateinit var characterSearchLiveData: MutableLiveData<Event<ResultState>>
     fun characterSearchApi(): LiveData<Event<ResultState>> {
         if (!::characterSearchLiveData.isInitialized) {
             characterSearchLiveData = MutableLiveData()
         }
         return characterSearchLiveData
+    }
+
+
+    private lateinit var getCharacterFilmDetail: MutableLiveData<Event<ResultState>>
+    fun characterFilmDetail(): LiveData<Event<ResultState>> {
+        if (!::getCharacterFilmDetail.isInitialized) {
+            getCharacterFilmDetail = MutableLiveData()
+        }
+        return getCharacterFilmDetail
     }
 }

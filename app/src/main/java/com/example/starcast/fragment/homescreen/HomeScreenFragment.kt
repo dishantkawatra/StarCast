@@ -93,6 +93,7 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
 
     private fun isValidate(searchText: String):Boolean
     {
+
         if(searchText.isEmpty())
         {
             return false
