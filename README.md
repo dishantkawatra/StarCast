@@ -2,8 +2,9 @@
 
 **This application is demo of start cast in which you can search people on home page and get details after you tap on it.**
 
+<img width="832" alt="Screenshot 2022-07-25 at 8 29 50 PM" src="https://user-images.githubusercontent.com/28764106/180808843-1175b3f9-e686-473e-8372-850cd86f2c7a.png">
 
-![Uploading Screenshot 2022-07-25 at 8.29.50 PM.png…]()
+
 ###### Third Party's in Star Cast Android
 
 ```
