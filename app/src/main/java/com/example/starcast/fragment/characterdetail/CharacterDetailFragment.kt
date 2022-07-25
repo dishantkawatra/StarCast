@@ -21,7 +21,7 @@ import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
 private const val ARG_PARAM1 = "data"
 private var characterDetailResponse: CharacterDetailResponse? = null
-class CharacterDetailFragment : Fragment() {
+class CharacterDetailFragment : Fragment(),AdapterView.OnItemSelectedListener {
     private val characterListViewModel: CharacterSearchViewModel by sharedViewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +32,13 @@ class CharacterDetailFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        addObserver()
+    }
 
+    /**
+     *  Observer of film data
+     */
+    private fun addObserver() {
         characterListViewModel.characterFilmDetail().observe(this, EventObserver {
             when (it) {
                 is ResultState.Success<*> -> {
@@ -57,6 +63,9 @@ class CharacterDetailFragment : Fragment() {
 
     }
 
+    /**
+     *  Set Data of people and spinner data
+     */
     private fun setData() {
         tvName.text= characterDetailResponse?.name
         tvBirthYear.text= characterDetailResponse?.birth_year
@@ -65,7 +74,6 @@ class CharacterDetailFragment : Fragment() {
         characterDetailResponse?.films?.let {
             data=java.util.ArrayList()
             it.forEachIndexed { index, _ ->
-
                 val spinnerString=index.plus(1).toString().plus(getString(R.string.text_film))
                 data.add(spinnerString)
             }
@@ -77,28 +85,33 @@ class CharacterDetailFragment : Fragment() {
                     spinner.adapter=adapter
                 }
             }
-
-            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-                override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                }
-
-                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                    if(it.size>0)
-                    characterListViewModel.getFilmDataApi(it[position])
-                    tvOpeningCrawl.text=""
-                    pbOpeningCrawl.visibility=View.VISIBLE
-                }
-
-            }
-
+            spinner.onItemSelectedListener=this
         }
-
-
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_detail_list, container, false)
+    }
+
+
+
+    /**
+     *  Spinner Click listener Handle for getting Opening Crawl
+     */
+    override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
+        characterDetailResponse?.films?.let {
+            if(it.size>0)
+            {
+                characterListViewModel.getFilmDataApi(it[position])
+                tvOpeningCrawl.text=""
+                pbOpeningCrawl.visibility=View.VISIBLE
+            }
+
+        }
+
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+
     }
 }

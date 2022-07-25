@@ -33,6 +33,14 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+        addObserver()
+
+    }
+
+    /**
+     *  Add Observer of people list data and add in list
+     */
+    private fun addObserver() {
         characterListViewModel.characterSearchApi().observe(this, EventObserver {
             btnSearch.clickable(true)
             progressBar.visibility=View.GONE
@@ -60,7 +68,6 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
                 }
             }
         })
-
     }
 
 
@@ -91,6 +98,9 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
         }
     }
 
+    /**
+     *  Validation of search text
+     */
     private fun isValidate(searchText: String):Boolean
     {
 
@@ -102,6 +112,9 @@ class HomeScreenFragment : Fragment(),View.OnClickListener, RecyclerItemClickLis
     }
 
 
+    /**
+     *  Handling search click
+     */
 
     override fun onClick(view: View?) {
         val searchText=etSearchPeople.text.toString()

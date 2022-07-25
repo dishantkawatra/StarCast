@@ -7,7 +7,7 @@ import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
-open class BaseViewModel(private val app: Application, val apiRepo: APIRepository) : AndroidViewModel(app), CoroutineScope {
+open class BaseViewModel(app: Application, val apiRepo: APIRepository) : AndroidViewModel(app), CoroutineScope {
 
 
     private val failedJobIdList = mutableSetOf<String>()
