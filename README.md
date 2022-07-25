@@ -3,11 +3,12 @@
 **This application is demo of start cast in which you can search people on home page and get details after you tap on it.**
 
 
-
+![Uploading Screenshot 2022-07-25 at 8.29.50 PM.png…]()
 ###### Third Party's in Star Cast Android
 
 ```
  
+
  1. Retrofit
  2. Navigation Component
  3. Coroutines
@@ -40,7 +41,7 @@ I create this application in mvvm architecture in which two views are there
  
 In Home Screen we used search bar on top of the screen which is first screen of navigation graph you get from nav_graph file in this screen you search people ex - Owen Lars 
 
-After search people list we show all names on recycler view ... when you tap on that name it navigate to next screen.
+After search people list will show with all names on recycler view ... when you tap on that name it navigate to next screen.
  
 ```
 
